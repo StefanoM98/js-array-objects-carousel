@@ -33,14 +33,16 @@ for (let i = 0; i < images.length; i++) {
 
     const sliderItems = `
         <div class="item">
-            <img src="${currentImg.image}" alt="">   
-            <h2 class="title">${currentImg.title}</h2>
-            <h4 class="subtitle">${currentImg.text}</h4>
+            <img src="${currentImg.image}" alt="">  
+            <div class="text">
+                <h2 class="title">${currentImg.title}</h2>
+                <h4 class="subtitle">${currentImg.text}</h4>
+            </div>    
         </div>
         `
 
     thumbsDivs = 
-    `<div class="thumb" style ="height: calc((300px) / ${images.length})">
+    `<div class="thumb" style ="height: calc(100% / 5)">
         <img src="${currentImg.image}" alt="">
      </div>`
      
