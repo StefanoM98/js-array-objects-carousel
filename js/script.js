@@ -26,14 +26,14 @@ const images = [
 console.log(images);
 const itemsContainer = document.querySelector(".slider-items")
 const thumbsContainer = document.querySelector(".thumbs")
-let thumbsDivs = ""
+let thumbsDivs;
  
 for (let i = 0; i < images.length; i++) {
     const currentImg = images[i];
 
     const sliderItems = `
         <div class="item">
-            <img src="${currentImg.image}" alt="">  
+            <img class="main-image" src="${currentImg.image}" alt="">  
             <div class="text">
                 <h2 class="title">${currentImg.title}</h2>
                 <h4 class="subtitle">${currentImg.text}</h4>
@@ -43,7 +43,7 @@ for (let i = 0; i < images.length; i++) {
 
     thumbsDivs = 
     `<div class="thumb" style ="height: calc(100% / 5)">
-        <img src="${currentImg.image}" alt="">
+        <img src="${currentImg.image}" >
      </div>`
      
     itemsContainer.innerHTML += sliderItems;
@@ -108,3 +108,25 @@ itemsContainer.addEventListener("mouseover", function(){
 itemsContainer.addEventListener("mouseout", function(){
     autoplayInteval = setInterval(nextImage, 3000);
 });
+
+// CLICK SULLE THUMBS
+const thumbsclick = document.querySelectorAll(".thumb img")
+console.log(thumbsclick);
+for(let i = 0; i < thumbsclick.length; i++) {
+    const currentImg = thumbsclick[i]
+    currentImg.addEventListener ("click", function(){
+        console.log(this);
+        const allitem = document.querySelectorAll(".item") 
+        const mainImg = document.querySelector(".main-image");
+        for (let i = 0; i < allitem.length; i++){
+            const curItem = allitem[i]
+            console.log(curItem);
+            if (mainImg.src === currentImg.src){
+                curItem.classList.add("active")
+            }
+        }
+        mainImg.src = currentImg.src;
+        this.classList.add ("active")
+        clearInterval(autoplayInteval)
+    })
+}
