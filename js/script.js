@@ -26,6 +26,7 @@ const images = [
 console.log(images);
 const itemsContainer = document.querySelector(".slider-items")
 const thumbsContainer = document.querySelector(".thumbs")
+
 let thumbsDivs;
  
 for (let i = 0; i < images.length; i++) {
@@ -49,6 +50,9 @@ for (let i = 0; i < images.length; i++) {
     itemsContainer.innerHTML += sliderItems;
     thumbsContainer.innerHTML += thumbsDivs;
 }
+const mainTitle = document.querySelector(".title");
+const mainSubTitle = document.querySelector(".subtitle");
+const mainImg = document.querySelector(".main-image");
 
 // STAMPO LA PRIMA IMMAGINE
 const itemsArrey = document.getElementsByClassName("item")
@@ -106,27 +110,19 @@ itemsContainer.addEventListener("mouseover", function(){
 });
 
 itemsContainer.addEventListener("mouseout", function(){
-    autoplayInteval = setInterval(nextImage, 3000);
+    aulayInteval = setInterval(nextImage, 3000);
 });
 
 // CLICK SULLE THUMBS
-const thumbsclick = document.querySelectorAll(".thumb img")
+const thumbsclick = document.querySelectorAll(".thumb")
 console.log(thumbsclick);
 for(let i = 0; i < thumbsclick.length; i++) {
-    const currentImg = thumbsclick[i]
-    currentImg.addEventListener ("click", function(){
-        console.log(this);
-        const allitem = document.querySelectorAll(".item") 
-        const mainImg = document.querySelector(".main-image");
-        for (let i = 0; i < allitem.length; i++){
-            const curItem = allitem[i]
-            console.log(curItem);
-            if (mainImg.src === currentImg.src){
-                curItem.classList.add("active")
-            }
-        }
-        mainImg.src = currentImg.src;
-        this.classList.add ("active")
-        clearInterval(autoplayInteval)
+    const currentThumb = thumbsclick[i]
+    currentThumb.addEventListener("click", function(){
+        const currentImg = images[i]
+
+        mainImg.src = currentImg.image;
+        mainTitle.innerHTML = currentImg.title;
+        mainSubTitle.innerHTML = currentImg.text;
     })
 }
